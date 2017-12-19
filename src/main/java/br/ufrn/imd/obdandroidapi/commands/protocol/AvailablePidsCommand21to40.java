@@ -15,23 +15,23 @@ package br.ufrn.imd.obdandroidapi.commands.protocol;
 import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
 
 /**
- * Retrieve available PIDs ranging from 01 to 20.
+ * Retrieve available PIDs ranging from 21 to 40.
  */
-public class AvailablePidsCommand_01_20 extends AvailablePidsCommand {
+public class AvailablePidsCommand21to40 extends AvailablePidsCommand {
 
     /**
      * Default constructor.
      */
-    public AvailablePidsCommand_01_20() {
-        super("01 00");
+    public AvailablePidsCommand21to40() {
+        super("01 20");
     }
 
     /**
      * Copy constructor.
-     *s
+     *
      * @param other a {@link AvailablePidsCommand} object.
      */
-    public AvailablePidsCommand_01_20(AvailablePidsCommand_01_20 other) {
+    public AvailablePidsCommand21to40(AvailablePidsCommand21to40 other) {
         super(other);
     }
 
@@ -40,6 +40,6 @@ public class AvailablePidsCommand_01_20 extends AvailablePidsCommand {
      */
     @Override
     public String getName() {
-        return AvailableCommandNames.PIDS_01_20.getValue();
+        return AvailableCommandNames.PIDS_21_40.getValue();
     }
 }

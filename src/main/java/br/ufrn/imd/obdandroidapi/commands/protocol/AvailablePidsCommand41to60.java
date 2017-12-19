@@ -17,12 +17,12 @@ import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
 /**
  * Retrieve available PIDs ranging from 41 to 60.
  */
-public class AvailablePidsCommand_41_60 extends AvailablePidsCommand {
+public class AvailablePidsCommand41to60 extends AvailablePidsCommand {
 
     /**
      * Default constructor.
      */
-    public AvailablePidsCommand_41_60() {
+    public AvailablePidsCommand41to60() {
         super("01 40");
     }
 
@@ -31,7 +31,7 @@ public class AvailablePidsCommand_41_60 extends AvailablePidsCommand {
      *
      * @param other a {@link AvailablePidsCommand} object.
      */
-    public AvailablePidsCommand_41_60(AvailablePidsCommand_41_60 other) {
+    public AvailablePidsCommand41to60(AvailablePidsCommand41to60 other) {
         super(other);
     }
 
