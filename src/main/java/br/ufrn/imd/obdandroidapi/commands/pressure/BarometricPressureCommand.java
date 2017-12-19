@@ -12,7 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.pressure;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Barometric pressure.
@@ -23,7 +23,7 @@ public class BarometricPressureCommand extends PressureCommand {
      * <p>Constructor for BarometricPressureCommand.</p>
      */
     public BarometricPressureCommand() {
-        super("01 33");
+        super(AvailableCommand.BAROMETRIC_PRESSURE);
     }
 
     /**
@@ -33,14 +33,6 @@ public class BarometricPressureCommand extends PressureCommand {
      */
     public BarometricPressureCommand(PressureCommand other) {
         super(other);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.BAROMETRIC_PRESSURE.getValue();
     }
 
 }

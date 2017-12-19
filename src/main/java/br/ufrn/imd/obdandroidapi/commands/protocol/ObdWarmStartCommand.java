@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Warm-start the OBD connection.
  */
@@ -21,7 +23,7 @@ public class ObdWarmStartCommand extends ObdProtocolCommand {
      * <p>Constructor for ObdWarmStartCommand.</p>
      */
     public ObdWarmStartCommand() {
-        super("AT WS");
+        super(AvailableCommand.WARM_START);
     }
 
     /**
@@ -39,14 +41,6 @@ public class ObdWarmStartCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "WarmStart OBD";
     }
 
 }

@@ -12,7 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.temperature;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Temperature of intake air.
@@ -23,7 +23,7 @@ public class AirIntakeTemperatureCommand extends TemperatureCommand {
      * <p>Constructor for AirIntakeTemperatureCommand.</p>
      */
     public AirIntakeTemperatureCommand() {
-        super("01 0F");
+        super(AvailableCommand.AIR_INTAKE_TEMP);
     }
 
     /**
@@ -33,14 +33,6 @@ public class AirIntakeTemperatureCommand extends TemperatureCommand {
      */
     public AirIntakeTemperatureCommand(AirIntakeTemperatureCommand other) {
         super(other);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.AIR_INTAKE_TEMP.getValue();
     }
 
 }

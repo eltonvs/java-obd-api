@@ -13,17 +13,19 @@
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * <p>Abstract ObdProtocolCommand class.</p>
  */
 public abstract class ObdProtocolCommand extends ObdCommand {
+
     /**
      * Default constructor to use
      *
      * @param command the command to send
      */
-    public ObdProtocolCommand(String command) {
+    public ObdProtocolCommand(AvailableCommand command) {
         super(command);
     }
 
@@ -48,8 +50,7 @@ public abstract class ObdProtocolCommand extends ObdCommand {
      */
     @Override
     protected void fillBuffer() {
-        // settings commands don't return a value appropriate to place into the
-        // buffer, so do nothing
+        // settings commands don't return a value appropriate to place into the buffer, so do nothing
     }
 
     /**
@@ -57,6 +58,7 @@ public abstract class ObdProtocolCommand extends ObdCommand {
      */
     @Override
     public String getCalculatedResult() {
-        return String.valueOf(getResult());
+        return getResult();
     }
+
 }

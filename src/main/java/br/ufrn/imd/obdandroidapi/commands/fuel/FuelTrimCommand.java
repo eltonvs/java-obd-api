@@ -20,19 +20,16 @@ import br.ufrn.imd.obdandroidapi.enums.FuelTrim;
  */
 public class FuelTrimCommand extends PercentageObdCommand {
 
-    private final FuelTrim bank;
-
     /**
      * Default constructor.
      * <p>
      * Will read the bank from parameters and construct the command accordingly.
      * Please, see FuelTrim enum for more details.
      *
-     * @param bank a {@link FuelTrim} object.
+     * @param bank a {@link br.ufrn.imd.obdandroidapi.enums.AvailableCommand} object.
      */
     public FuelTrimCommand(final FuelTrim bank) {
-        super(bank.buildObdCommand());
-        this.bank = bank;
+        super(bank.getValue());
     }
 
     /**
@@ -65,15 +62,7 @@ public class FuelTrimCommand extends PercentageObdCommand {
      * @return the name of the bank in string representation.
      */
     public final String getBank() {
-        return bank.getBank();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return bank.getBank();
+        return getName();
     }
 
 }

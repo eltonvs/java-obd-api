@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.exceptions;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Generic message error
  *
@@ -24,7 +26,7 @@ public class ResponseException extends RuntimeException {
     private final boolean matchRegex;
 
     private String response;
-    private String command;
+    private AvailableCommand command;
 
     /**
      * <p>Constructor for ResponseException.</p>
@@ -70,7 +72,7 @@ public class ResponseException extends RuntimeException {
      *
      * @param command a {@link String} object.
      */
-    public void setCommand(String command) {
+    public void setCommand(AvailableCommand command) {
         this.command = command;
     }
 

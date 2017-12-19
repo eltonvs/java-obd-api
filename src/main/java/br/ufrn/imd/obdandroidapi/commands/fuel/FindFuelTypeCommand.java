@@ -13,7 +13,7 @@
 package br.ufrn.imd.obdandroidapi.commands.fuel;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 import br.ufrn.imd.obdandroidapi.enums.FuelType;
 
 /**
@@ -27,7 +27,7 @@ public class FindFuelTypeCommand extends ObdCommand {
      * Default constructor.
      */
     public FindFuelTypeCommand() {
-        super("01 51");
+        super(AvailableCommand.FUEL_TYPE);
     }
 
     /**
@@ -66,14 +66,6 @@ public class FindFuelTypeCommand extends ObdCommand {
     @Override
     public String getCalculatedResult() {
         return String.valueOf(fuelType);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.FUEL_TYPE.getValue();
     }
 
 }

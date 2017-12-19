@@ -13,7 +13,7 @@
 package br.ufrn.imd.obdandroidapi.commands.control;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * This command will for now read MIL (check engine light) state and number of
@@ -24,6 +24,7 @@ import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
  * completeness of certain on-board tests.
  */
 public class DtcNumberCommand extends ObdCommand {
+
     private int codeCount = 0;
     private boolean milOn = false;
 
@@ -31,7 +32,7 @@ public class DtcNumberCommand extends ObdCommand {
      * Default constructor.
      */
     public DtcNumberCommand() {
-        super("01 01");
+        super(AvailableCommand.DTC_NUMBER);
     }
 
     /**
@@ -90,11 +91,4 @@ public class DtcNumberCommand extends ObdCommand {
         return milOn;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.DTC_NUMBER.getValue();
-    }
 }

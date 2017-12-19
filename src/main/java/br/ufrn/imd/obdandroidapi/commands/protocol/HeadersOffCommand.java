@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Turn-off headers.
  */
@@ -21,7 +23,7 @@ public class HeadersOffCommand extends ObdProtocolCommand {
      * <p>Constructor for HeadersOffCommand.</p>
      */
     public HeadersOffCommand() {
-        super("ATH0");
+        super(AvailableCommand.HEADERS_OFF);
     }
 
     /**
@@ -39,14 +41,6 @@ public class HeadersOffCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Headers disabled";
     }
 
 }

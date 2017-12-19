@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Reset the OBD connection.
  */
@@ -21,7 +23,7 @@ public class ObdResetCommand extends ObdProtocolCommand {
      * <p>Constructor for ObdResetCommand.</p>
      */
     public ObdResetCommand() {
-        super("AT Z");
+        super(AvailableCommand.RESET_OBD);
     }
 
     /**
@@ -39,14 +41,6 @@ public class ObdResetCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Reset OBD";
     }
 
 }

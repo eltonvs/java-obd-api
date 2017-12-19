@@ -16,19 +16,20 @@ import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.commands.SystemOfUnits;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Current speed.
  */
 public class SpeedCommand extends ObdCommand implements SystemOfUnits {
+
     private int metricSpeed = 0;
 
     /**
      * Default constructor.
      */
     public SpeedCommand() {
-        super("01 0D");
+        super(AvailableCommand.SPEED);
     }
 
     /**
@@ -103,11 +104,4 @@ public class SpeedCommand extends ObdCommand implements SystemOfUnits {
         return imperialUnits ? "mph" : "km/h";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.SPEED.getValue();
-    }
 }

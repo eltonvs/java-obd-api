@@ -15,7 +15,7 @@ package br.ufrn.imd.obdandroidapi.commands.fuel;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * AFR
@@ -28,7 +28,7 @@ public class AirFuelRatioCommand extends ObdCommand {
      * <p>Constructor for AirFuelRatioCommand.</p>
      */
     public AirFuelRatioCommand() {
-        super("01 44");
+        super(AvailableCommand.AIR_FUEL_RATIO);
     }
 
     /**
@@ -65,14 +65,6 @@ public class AirFuelRatioCommand extends ObdCommand {
      */
     public double getAirFuelRatio() {
         return afr;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.AIR_FUEL_RATIO.getValue();
     }
 
 }

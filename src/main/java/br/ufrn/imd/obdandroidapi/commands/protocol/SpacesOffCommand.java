@@ -13,13 +13,15 @@
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Turn-off spaces.
  */
 public class SpacesOffCommand extends ObdProtocolCommand {
 
     public SpacesOffCommand() {
-        super("ATS0");
+        super(AvailableCommand.SPACES_OFF);
     }
 
     /**
@@ -36,8 +38,4 @@ public class SpacesOffCommand extends ObdProtocolCommand {
         return getResult();
     }
 
-    @Override
-    public String getName() {
-        return "Spaces Off";
-    }
 }

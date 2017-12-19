@@ -14,7 +14,7 @@ package br.ufrn.imd.obdandroidapi.commands.engine;
 
 
 import br.ufrn.imd.obdandroidapi.commands.PercentageObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Read the throttle position in percentage.
@@ -25,7 +25,7 @@ public class ThrottlePositionCommand extends PercentageObdCommand {
      * Default constructor.
      */
     public ThrottlePositionCommand() {
-        super("01 11");
+        super(AvailableCommand.THROTTLE_POS);
     }
 
     /**
@@ -35,14 +35,6 @@ public class ThrottlePositionCommand extends PercentageObdCommand {
      */
     public ThrottlePositionCommand(ThrottlePositionCommand other) {
         super(other);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.THROTTLE_POS.getValue();
     }
 
 }

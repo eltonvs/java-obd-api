@@ -16,7 +16,7 @@ package br.ufrn.imd.obdandroidapi.commands.control;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * <p>ModuleVoltageCommand class.</p>
@@ -24,13 +24,13 @@ import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
 public class ModuleVoltageCommand extends ObdCommand {
 
     // Equivalent ratio (V)
-    private double voltage = 0.00;
+    private double voltage = 0f;
 
     /**
      * Default constructor.
      */
     public ModuleVoltageCommand() {
-        super("01 42");
+        super(AvailableCommand.CONTROL_MODULE_VOLTAGE);
     }
 
     /**
@@ -84,14 +84,6 @@ public class ModuleVoltageCommand extends ObdCommand {
      */
     public double getVoltage() {
         return voltage;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.CONTROL_MODULE_VOLTAGE.getValue();
     }
 
 }

@@ -15,7 +15,7 @@ package br.ufrn.imd.obdandroidapi.commands.fuel;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Wideband AFR
@@ -28,7 +28,7 @@ public class WidebandAirFuelRatioCommand extends ObdCommand {
      * <p>Constructor for WidebandAirFuelRatioCommand.</p>
      */
     public WidebandAirFuelRatioCommand() {
-        super("01 34");
+        super(AvailableCommand.WIDEBAND_AIR_FUEL_RATIO);
     }
 
     /**
@@ -65,14 +65,6 @@ public class WidebandAirFuelRatioCommand extends ObdCommand {
      */
     public double getWidebandAirFuelRatio() {
         return wafr;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.WIDEBAND_AIR_FUEL_RATIO.getValue();
     }
 
 }

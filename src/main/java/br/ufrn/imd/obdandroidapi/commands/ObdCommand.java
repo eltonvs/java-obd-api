@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 import br.ufrn.imd.obdandroidapi.exceptions.BusInitException;
 import br.ufrn.imd.obdandroidapi.exceptions.MisunderstoodCommandException;
 import br.ufrn.imd.obdandroidapi.exceptions.NoDataException;
@@ -57,7 +58,7 @@ public abstract class ObdCommand implements IObdCommand {
             UnsupportedCommandException.class
     ));
     protected List<Integer> buffer = null;
-    protected String cmd = null;
+    protected final AvailableCommand cmd;
     protected boolean imperialUnits = false;
     protected String rawData = null;
     protected Long responseDelayInMs = null;
@@ -68,6 +69,7 @@ public abstract class ObdCommand implements IObdCommand {
      * Prevent empty instantiation
      */
     private ObdCommand() {
+        cmd = null;
     }
 
     /**
@@ -84,7 +86,7 @@ public abstract class ObdCommand implements IObdCommand {
      *
      * @param command the command to send
      */
-    public ObdCommand(String command) {
+    public ObdCommand(AvailableCommand command) {
         this.cmd = command;
         this.buffer = new ArrayList<>();
     }
@@ -121,7 +123,7 @@ public abstract class ObdCommand implements IObdCommand {
      */
     protected void sendCommand(OutputStream out) throws IOException, InterruptedException {
         // write to OutputStream (i.e.: a BluetoothSocket) with an added Carriage return
-        out.write((cmd + "\r").getBytes());
+        out.write((cmd.getCommand() + "\r").getBytes());
         out.flush();
         if (responseDelayInMs != null && responseDelayInMs > 0) {
             Thread.sleep(responseDelayInMs);
@@ -254,7 +256,9 @@ public abstract class ObdCommand implements IObdCommand {
      *
      * @return the OBD command name.
      */
-    public abstract String getName();
+    public String getName() {
+        return this.cmd.getValue();
+    }
 
     /**
      * <p>getCommandPID.</p>
@@ -262,7 +266,7 @@ public abstract class ObdCommand implements IObdCommand {
      * @return a {@link java.lang.String} object.
      */
     public final String getCommandPID() {
-        return cmd.substring(3);
+        return cmd.getCommand().substring(3);
     }
 
     /**
@@ -387,12 +391,12 @@ public abstract class ObdCommand implements IObdCommand {
      * @return a {@link java.lang.String} object.
      */
     public final String getCommandMode() {
-        return cmd.length() >= 2 ? cmd.substring(0, 2) : cmd;
+        return cmd.getCommand().length() >= 2 ? cmd.getCommand().substring(0, 2) : cmd.getCommand();
     }
 
     @Override
     public int hashCode() {
-        return cmd != null ? cmd.hashCode() : 0;
+        return cmd.getCommand() != null ? cmd.getCommand().hashCode() : 0;
     }
 
     @Override
@@ -407,5 +411,10 @@ public abstract class ObdCommand implements IObdCommand {
         ObdCommand that = (ObdCommand) o;
 
         return cmd != null ? cmd.equals(that.cmd) : that.cmd == null;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " = " + getFormattedResult() + "\n";
     }
 }

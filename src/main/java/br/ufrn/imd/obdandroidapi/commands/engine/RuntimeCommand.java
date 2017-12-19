@@ -16,7 +16,7 @@ package br.ufrn.imd.obdandroidapi.commands.engine;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Engine runtime.
@@ -29,7 +29,7 @@ public class RuntimeCommand extends ObdCommand {
      * Default constructor.
      */
     public RuntimeCommand() {
-        super("01 1F");
+        super(AvailableCommand.ENGINE_RUNTIME);
     }
 
     /**
@@ -76,14 +76,6 @@ public class RuntimeCommand extends ObdCommand {
     @Override
     public String getResultUnit() {
         return "s";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.ENGINE_RUNTIME.getValue();
     }
 
 }

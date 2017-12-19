@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * As per https://www.elmelectronics.com/help/obd/tips/#327_Commands:
  * <p>
@@ -31,7 +33,7 @@ public class CloseCommand extends ObdProtocolCommand {
      * <p>Constructor for CloseCommand.</p>
      */
     public CloseCommand() {
-        super("AT PC");
+        super(AvailableCommand.PROTOCOL_CLOSE);
     }
 
     /**
@@ -49,14 +51,6 @@ public class CloseCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Protocol Close";
     }
 
 }

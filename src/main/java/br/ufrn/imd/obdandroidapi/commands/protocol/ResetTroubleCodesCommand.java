@@ -13,6 +13,7 @@
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Reset trouble codes.
@@ -23,7 +24,7 @@ public class ResetTroubleCodesCommand extends ObdCommand {
      * <p>Constructor for ResetTroubleCodesCommand.</p>
      */
     public ResetTroubleCodesCommand() {
-        super("04");
+        super(AvailableCommand.RESET_TROUBLE_CODES);
     }
 
     /**
@@ -47,15 +48,6 @@ public class ResetTroubleCodesCommand extends ObdCommand {
      */
     @Override
     public String getCalculatedResult() {
-        return getResult();
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
         return getResult();
     }
 

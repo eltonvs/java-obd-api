@@ -14,6 +14,8 @@ package br.ufrn.imd.obdandroidapi.commands;
 
 import java.util.Locale;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Abstract class for percentage commands.
  */
@@ -25,7 +27,7 @@ public abstract class PercentageObdCommand extends ObdCommand {
      *
      * @param command a {@link java.lang.String} object.
      */
-    public PercentageObdCommand(String command) {
+    public PercentageObdCommand(AvailableCommand command) {
         super(command);
     }
 

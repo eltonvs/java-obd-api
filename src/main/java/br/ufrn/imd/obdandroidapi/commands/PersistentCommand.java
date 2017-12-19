@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Base persistent OBD command.
  */
@@ -32,7 +34,7 @@ public abstract class PersistentCommand extends ObdCommand {
      *
      * @param command a {@link java.lang.String} object.
      */
-    public PersistentCommand(String command) {
+    public PersistentCommand(AvailableCommand command) {
         super(command);
     }
 

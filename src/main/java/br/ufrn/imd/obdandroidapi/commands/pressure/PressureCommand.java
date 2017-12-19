@@ -17,6 +17,7 @@ import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.commands.SystemOfUnits;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Abstract pressure command.
@@ -29,9 +30,9 @@ public abstract class PressureCommand extends ObdCommand implements SystemOfUnit
     /**
      * Default constructor
      *
-     * @param cmd a {@link java.lang.String} object.
+     * @param cmd a {@link AvailableCommand} object.
      */
-    public PressureCommand(String cmd) {
+    public PressureCommand(AvailableCommand cmd) {
         super(cmd);
     }
 

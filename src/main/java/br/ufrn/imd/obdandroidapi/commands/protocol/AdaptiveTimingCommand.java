@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AdaptiveTiming;
+
 /**
  * By default, Adaptive Timing option 1 (AT1) is enabled, and is the recommended setting.
  * AT0 is used to disable Adaptive timing (so the timeout is always as set by AT ST),
@@ -25,8 +27,8 @@ public class AdaptiveTimingCommand extends ObdProtocolCommand {
      *
      * @param mode a int.
      */
-    public AdaptiveTimingCommand(int mode) {
-        super("AT AT" + mode);
+    public AdaptiveTimingCommand(AdaptiveTiming mode) {
+        super(mode.getValue());
     }
 
     /**
@@ -44,14 +46,6 @@ public class AdaptiveTimingCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Adaptive timing set";
     }
 
 }

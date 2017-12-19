@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Turns off line-feed.
  */
@@ -21,7 +23,7 @@ public class LineFeedOffCommand extends ObdProtocolCommand {
      * <p>Constructor for LineFeedOffCommand.</p>
      */
     public LineFeedOffCommand() {
-        super("AT L0");
+        super(AvailableCommand.LINE_FEED_OFF);
     }
 
     /**
@@ -39,14 +41,6 @@ public class LineFeedOffCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Line Feed Off";
     }
 
 }

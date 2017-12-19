@@ -12,10 +12,9 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.control;
 
-
 import java.util.regex.Pattern;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * It is not needed no know how many DTC are stored.
@@ -32,7 +31,7 @@ public class PendingTroubleCodesCommand extends GenericTroubleCodeCommand {
      * <p>Constructor for PendingTroubleCodesCommand.</p>
      */
     public PendingTroubleCodesCommand() {
-        super("07");
+        super(AvailableCommand.PENDING_TROUBLE_CODES);
     }
 
     /**
@@ -49,11 +48,4 @@ public class PendingTroubleCodesCommand extends GenericTroubleCodeCommand {
         return CARRIAGE_NUMBER_PATTERN.matcher(str).replaceAll("");
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.PENDING_TROUBLE_CODES.getValue();
-    }
 }

@@ -15,7 +15,7 @@ package br.ufrn.imd.obdandroidapi.commands.control;
 import java.util.regex.Matcher;
 
 import br.ufrn.imd.obdandroidapi.commands.PersistentCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 import static br.ufrn.imd.obdandroidapi.utils.RegexUtils.STARTS_WITH_ALPHANUM_PATTERN;
 
@@ -29,7 +29,7 @@ public class VinCommand extends PersistentCommand {
      * Default constructor.
      */
     public VinCommand() {
-        super("09 02");
+        super(AvailableCommand.VIN);
     }
 
     /**
@@ -68,14 +68,6 @@ public class VinCommand extends PersistentCommand {
     @Override
     public String getFormattedResult() {
         return getCalculatedResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.VIN.getValue();
     }
 
     /**

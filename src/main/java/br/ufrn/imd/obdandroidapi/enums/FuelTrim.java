@@ -12,45 +12,20 @@
  */
 package br.ufrn.imd.obdandroidapi.enums;
 
-import android.util.SparseArray;
-
 /**
  * Select one of the Fuel Trim percentage banks to access.
  */
 public enum FuelTrim {
 
-    SHORT_TERM_BANK_1(0x06, "Short Term Fuel Trim Bank 1"),
-    LONG_TERM_BANK_1(0x07, "Long Term Fuel Trim Bank 1"),
-    SHORT_TERM_BANK_2(0x08, "Short Term Fuel Trim Bank 2"),
-    LONG_TERM_BANK_2(0x09, "Long Term Fuel Trim Bank 2");
+    SHORT_TERM_BANK_1(AvailableCommand.SHORT_TERM_BANK_1),
+    LONG_TERM_BANK_1(AvailableCommand.LONG_TERM_BANK_1),
+    SHORT_TERM_BANK_2(AvailableCommand.SHORT_TERM_BANK_2),
+    LONG_TERM_BANK_2(AvailableCommand.LONG_TERM_BANK_2);
 
-    /**
-     * Constant <code>map</code>
-     */
-    private static final SparseArray<FuelTrim> arr = new SparseArray<>();
+    private final AvailableCommand value;
 
-    static {
-        for (FuelTrim error : FuelTrim.values()) {
-            arr.append(error.getValue(), error);
-        }
-    }
-
-    private final int value;
-    private final String bank;
-
-    FuelTrim(final int value, final String bank) {
+    FuelTrim(final AvailableCommand value) {
         this.value = value;
-        this.bank = bank;
-    }
-
-    /**
-     * <p>fromValue.</p>
-     *
-     * @param value a int.
-     * @return a {@link FuelTrim} object.
-     */
-    public static FuelTrim fromValue(final int value) {
-        return arr.get(value);
     }
 
     /**
@@ -58,26 +33,8 @@ public enum FuelTrim {
      *
      * @return a int.
      */
-    public int getValue() {
+    public AvailableCommand getValue() {
         return value;
-    }
-
-    /**
-     * <p>Getter for the field <code>bank</code>.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public String getBank() {
-        return bank;
-    }
-
-    /**
-     * <p>buildObdCommand.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     */
-    public final String buildObdCommand() {
-        return "01 0" + value;
     }
 
 }

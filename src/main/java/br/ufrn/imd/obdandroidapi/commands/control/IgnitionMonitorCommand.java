@@ -14,7 +14,7 @@ package br.ufrn.imd.obdandroidapi.commands.control;
 
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 public class IgnitionMonitorCommand extends ObdCommand {
 
@@ -24,7 +24,7 @@ public class IgnitionMonitorCommand extends ObdCommand {
      * Default constructor.
      */
     public IgnitionMonitorCommand() {
-        super("AT IGN");
+        super(AvailableCommand.IGNITION_MONITOR);
     }
 
     /**
@@ -45,11 +45,6 @@ public class IgnitionMonitorCommand extends ObdCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    @Override
-    public String getName() {
-        return AvailableCommandNames.IGNITION_MONITOR.getValue();
     }
 
     @Override

@@ -13,7 +13,7 @@
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 import br.ufrn.imd.obdandroidapi.enums.ObdProtocols;
 
 /**
@@ -34,7 +34,7 @@ public class DescribeProtocolNumberCommand extends ObdCommand {
      * <p>Constructor for DescribeProtocolNumberCommand.</p>
      */
     public DescribeProtocolNumberCommand() {
-        super("AT DPN");
+        super(AvailableCommand.DESCRIBE_PROTOCOL_NUMBER);
     }
 
     /**
@@ -54,7 +54,7 @@ public class DescribeProtocolNumberCommand extends ObdCommand {
         }
         ObdProtocols[] protocols = ObdProtocols.values();
         for (ObdProtocols protocol : protocols) {
-            if (protocol.getValue() == protocolNumber) {
+            if (protocol.getValue().getCommand().endsWith(String.valueOf(protocolNumber))) {
                 this.obdProtocol = protocol;
                 break;
             }
@@ -78,14 +78,6 @@ public class DescribeProtocolNumberCommand extends ObdCommand {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.DESCRIBE_PROTOCOL_NUMBER.getValue();
-    }
-
-    /**
      * <p>Getter for the field <code>obdProtocol</code>.</p>
      *
      * @return a {@link ObdProtocols} object.
@@ -93,4 +85,5 @@ public class DescribeProtocolNumberCommand extends ObdCommand {
     public ObdProtocols getObdProtocol() {
         return obdProtocol;
     }
+
 }

@@ -12,7 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.pressure;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * <p>FuelRailPressureCommand class.</p>
@@ -23,7 +23,7 @@ public class FuelRailPressureCommand extends PressureCommand {
      * <p>Constructor for FuelRailPressureCommand.</p>
      */
     public FuelRailPressureCommand() {
-        super("01 23");
+        super(AvailableCommand.FUEL_RAIL_PRESSURE);
     }
 
     /**
@@ -45,14 +45,6 @@ public class FuelRailPressureCommand extends PressureCommand {
         int a = buffer.get(2);
         int b = buffer.get(3);
         return ((a * 256) + b) * 10;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.FUEL_RAIL_PRESSURE.getValue();
     }
 
 }

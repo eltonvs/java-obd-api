@@ -19,6 +19,7 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * It is not needed no know how many DTC are stored. Because when no DTC are
@@ -27,6 +28,7 @@ import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
  * DTC P0000 that mean no message are we can end.
  */
 public abstract class GenericTroubleCodeCommand extends ObdCommand {
+
     /**
      * Constant <code>dtcLetters={'P', 'C', 'B', 'U'}</code>
      */
@@ -46,7 +48,7 @@ public abstract class GenericTroubleCodeCommand extends ObdCommand {
      * Constructor for TroubleCodesCommand.
      * </p>
      */
-    public GenericTroubleCodeCommand(String command) {
+    public GenericTroubleCodeCommand(AvailableCommand command) {
         super(command);
     }
 
@@ -167,4 +169,5 @@ public abstract class GenericTroubleCodeCommand extends ObdCommand {
     private byte hexStringToByteArray(char s) {
         return (byte) (Character.digit(s, 16) << 4);
     }
+
 }

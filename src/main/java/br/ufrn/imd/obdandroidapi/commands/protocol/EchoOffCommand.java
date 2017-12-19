@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * Turn-off echo.
  */
@@ -21,7 +23,7 @@ public class EchoOffCommand extends ObdProtocolCommand {
      * <p>Constructor for EchoOffCommand.</p>
      */
     public EchoOffCommand() {
-        super("AT E0");
+        super(AvailableCommand.ECHO_OFF);
     }
 
     /**
@@ -39,14 +41,6 @@ public class EchoOffCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Echo Off";
     }
 
 }

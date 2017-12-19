@@ -15,7 +15,7 @@ package br.ufrn.imd.obdandroidapi.commands.fuel;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Fuel Consumption Rate per hour.
@@ -28,7 +28,7 @@ public class ConsumptionRateCommand extends ObdCommand {
      * <p>Constructor for ConsumptionRateCommand.</p>
      */
     public ConsumptionRateCommand() {
-        super("01 5E");
+        super(AvailableCommand.FUEL_CONSUMPTION_RATE);
     }
 
     /**
@@ -80,14 +80,6 @@ public class ConsumptionRateCommand extends ObdCommand {
      */
     public float getLitersPerHour() {
         return fuelRate;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.FUEL_CONSUMPTION_RATE.getValue();
     }
 
 }

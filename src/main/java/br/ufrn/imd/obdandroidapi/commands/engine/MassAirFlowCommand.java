@@ -16,7 +16,7 @@ package br.ufrn.imd.obdandroidapi.commands.engine;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Mass Air Flow (MAF)
@@ -29,7 +29,7 @@ public class MassAirFlowCommand extends ObdCommand {
      * Default constructor.
      */
     public MassAirFlowCommand() {
-        super("01 10");
+        super(AvailableCommand.MAF);
     }
 
     /**
@@ -81,14 +81,6 @@ public class MassAirFlowCommand extends ObdCommand {
      */
     public double getMAF() {
         return maf;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.MAF.getValue();
     }
 
 }

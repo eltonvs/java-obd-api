@@ -16,7 +16,7 @@ package br.ufrn.imd.obdandroidapi.commands.engine;
 import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Displays the current engine revolutions per minute (RPM).
@@ -29,7 +29,7 @@ public class RPMCommand extends ObdCommand {
      * Default constructor.
      */
     public RPMCommand() {
-        super("01 0C");
+        super(AvailableCommand.ENGINE_RPM);
     }
 
     /**
@@ -72,14 +72,6 @@ public class RPMCommand extends ObdCommand {
     @Override
     public String getResultUnit() {
         return "RPM";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.ENGINE_RPM.getValue();
     }
 
     /**

@@ -13,7 +13,7 @@
 package br.ufrn.imd.obdandroidapi.commands.control;
 
 import br.ufrn.imd.obdandroidapi.commands.PercentageObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Fuel systems that use conventional oxygen sensor display the commanded open
@@ -32,7 +32,7 @@ public class EquivalentRatioCommand extends PercentageObdCommand {
      * Default constructor.
      */
     public EquivalentRatioCommand() {
-        super("01 44");
+        super(AvailableCommand.EQUIV_RATIO);
     }
 
     /**
@@ -62,14 +62,6 @@ public class EquivalentRatioCommand extends PercentageObdCommand {
      */
     public double getRatio() {
         return (double) percentage;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.EQUIV_RATIO.getValue();
     }
 
 }

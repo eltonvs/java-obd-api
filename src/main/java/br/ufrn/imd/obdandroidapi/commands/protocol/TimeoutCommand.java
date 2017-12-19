@@ -12,6 +12,8 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+
 /**
  * This will set the value of time in milliseconds (ms) that the OBD interface
  * will wait for a response from the ECU. If exceeds, the response is "NO DATA".
@@ -25,7 +27,7 @@ public class TimeoutCommand extends ObdProtocolCommand {
      *                desired timeout in milliseconds (ms).
      */
     public TimeoutCommand(int timeout) {
-        super("AT ST " + Integer.toHexString(0xFF & timeout));
+        super(AvailableCommand.CustomCommand.getTimeout(timeout));
     }
 
     /**
@@ -43,14 +45,6 @@ public class TimeoutCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return "Timeout";
     }
 
 }

@@ -14,7 +14,7 @@ package br.ufrn.imd.obdandroidapi.commands.engine;
 
 
 import br.ufrn.imd.obdandroidapi.commands.PercentageObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * <p>AbsoluteLoadCommand class.</p>
@@ -25,7 +25,7 @@ public class AbsoluteLoadCommand extends PercentageObdCommand {
      * Default constructor.
      */
     public AbsoluteLoadCommand() {
-        super("01 43");
+        super(AvailableCommand.ABS_LOAD);
     }
 
     /**
@@ -55,14 +55,6 @@ public class AbsoluteLoadCommand extends PercentageObdCommand {
      */
     public double getRatio() {
         return percentage;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.ABS_LOAD.getValue();
     }
 
 }

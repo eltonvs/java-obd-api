@@ -12,7 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.pressure;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Intake Manifold Pressure
@@ -23,7 +23,7 @@ public class IntakeManifoldPressureCommand extends PressureCommand {
      * Default constructor.
      */
     public IntakeManifoldPressureCommand() {
-        super("01 0B");
+        super(AvailableCommand.INTAKE_MANIFOLD_PRESSURE);
     }
 
     /**
@@ -33,14 +33,6 @@ public class IntakeManifoldPressureCommand extends PressureCommand {
      */
     public IntakeManifoldPressureCommand(IntakeManifoldPressureCommand other) {
         super(other);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.INTAKE_MANIFOLD_PRESSURE.getValue();
     }
 
 }

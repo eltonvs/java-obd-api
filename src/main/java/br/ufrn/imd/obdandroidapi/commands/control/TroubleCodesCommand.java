@@ -14,7 +14,7 @@ package br.ufrn.imd.obdandroidapi.commands.control;
 
 import java.util.regex.Pattern;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * It is not needed no know how many DTC are stored. Because when no DTC are
@@ -32,7 +32,7 @@ public class TroubleCodesCommand extends GenericTroubleCodeCommand {
      * </p>
      */
     public TroubleCodesCommand() {
-        super("03");
+        super(AvailableCommand.TROUBLE_CODES);
     }
 
     /**
@@ -49,11 +49,4 @@ public class TroubleCodesCommand extends GenericTroubleCodeCommand {
         return CARRIAGE_NUMBER_PATTERN.matcher(str).replaceAll("");
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.TROUBLE_CODES.getValue();
-    }
 }

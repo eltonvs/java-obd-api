@@ -16,19 +16,20 @@ import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.commands.SystemOfUnits;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Distance traveled since codes cleared-up.
  */
 public class DistanceSinceCCCommand extends ObdCommand implements SystemOfUnits {
+
     private int km = 0;
 
     /**
      * Default constructor.
      */
     public DistanceSinceCCCommand() {
-        super("01 31");
+        super(AvailableCommand.DISTANCE_TRAVELED_AFTER_CODES_CLEARED);
     }
 
     /**
@@ -102,11 +103,4 @@ public class DistanceSinceCCCommand extends ObdCommand implements SystemOfUnits 
         this.km = km;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.DISTANCE_TRAVELED_AFTER_CODES_CLEARED.getValue();
-    }
 }

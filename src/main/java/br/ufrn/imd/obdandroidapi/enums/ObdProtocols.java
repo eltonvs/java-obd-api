@@ -20,71 +20,62 @@ public enum ObdProtocols {
     /**
      * Auto select protocol and save.
      */
-    AUTO('0'),
+    AUTO(AvailableCommand.PROTOCOL_AUTO),
 
     /**
      * 41.6 kbaud
      */
-    SAE_J1850_PWM('1'),
+    SAE_J1850_PWM(AvailableCommand.PROTOCOL_SAE_J1850_PWM),
 
     /**
      * 10.4 kbaud
      */
-    SAE_J1850_VPW('2'),
+    SAE_J1850_VPW(AvailableCommand.PROTOCOL_SAE_J1850_VPW),
 
     /**
      * 5 baud init
      */
-    ISO_9141_2('3'),
+    ISO_9141_2(AvailableCommand.PROTOCOL_ISO_9141_2),
 
     /**
      * 5 baud init
      */
-    ISO_14230_4_KWP('4'),
+    ISO_14230_4_KWP(AvailableCommand.PROTOCOL_ISO_14230_4_KWP),
 
     /**
      * Fast init
      */
-    ISO_14230_4_KWP_FAST('5'),
+    ISO_14230_4_KWP_FAST(AvailableCommand.PROTOCOL_ISO_14230_4_KWP_FAST),
 
     /**
      * 11 bit ID, 500 kbaud
      */
-    ISO_15765_4_CAN('6'),
+    ISO_15765_4_CAN(AvailableCommand.PROTOCOL_ISO_15765_4_CAN),
 
     /**
      * 29 bit ID, 500 kbaud
      */
-    ISO_15765_4_CAN_B('7'),
+    ISO_15765_4_CAN_B(AvailableCommand.PROTOCOL_ISO_15765_4_CAN_B),
 
     /**
      * 11 bit ID, 250 kbaud
      */
-    ISO_15765_4_CAN_C('8'),
+    ISO_15765_4_CAN_C(AvailableCommand.PROTOCOL_ISO_15765_4_CAN_C),
 
     /**
      * 29 bit ID, 250 kbaud
      */
-    ISO_15765_4_CAN_D('9'),
+    ISO_15765_4_CAN_D(AvailableCommand.PROTOCOL_ISO_15765_4_CAN_D),
 
     /**
      * 29 bit ID, 250 kbaud (user adjustable)
      */
-    SAE_J1939_CAN('A'),
+    SAE_J1939_CAN(AvailableCommand.PROTOCOL_SAE_J1939_CAN);
 
-    /**
-     * 11 bit ID (user adjustable), 125 kbaud (user adjustable)
-     */
-    USER1_CAN('B'),
 
-    /**
-     * 11 bit ID (user adjustable), 50 kbaud (user adjustable)
-     */
-    USER2_CAN('C');
+    private final AvailableCommand value;
 
-    private final char value;
-
-    ObdProtocols(char value) {
+    ObdProtocols(AvailableCommand value) {
         this.value = value;
     }
 
@@ -93,7 +84,7 @@ public enum ObdProtocols {
      *
      * @return a char.
      */
-    public char getValue() {
+    public AvailableCommand getValue() {
         return value;
     }
 }

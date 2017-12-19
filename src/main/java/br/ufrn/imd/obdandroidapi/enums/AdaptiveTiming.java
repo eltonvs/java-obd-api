@@ -10,29 +10,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.ufrn.imd.obdandroidapi.commands.temperature;
-
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+package br.ufrn.imd.obdandroidapi.enums;
 
 /**
- * Ambient Air Temperature.
+ * Select one of the Fuel Trim percentage banks to access.
  */
-public class AmbientAirTemperatureCommand extends TemperatureCommand {
+public enum AdaptiveTiming {
 
-    /**
-     * <p>Constructor for AmbientAirTemperatureCommand.</p>
-     */
-    public AmbientAirTemperatureCommand() {
-        super(AvailableCommand.AMBIENT_AIR_TEMP);
+    ADAPTIVE_TIMING_OFF(AvailableCommand.ADAPTIVE_TIMING_OFF),
+    ADAPTIVE_TIMING_AUTO_1(AvailableCommand.ADAPTIVE_TIMING_AUTO_1),
+    ADAPTIVE_TIMING_AUTO_2(AvailableCommand.ADAPTIVE_TIMING_AUTO_2);
+
+    private final AvailableCommand value;
+
+    AdaptiveTiming(final AvailableCommand value) {
+        this.value = value;
     }
 
     /**
-     * <p>Constructor for AmbientAirTemperatureCommand.</p>
+     * <p>Getter for the field <code>value</code>.</p>
      *
-     * @param other a {@link TemperatureCommand} object.
+     * @return a int.
      */
-    public AmbientAirTemperatureCommand(TemperatureCommand other) {
-        super(other);
+    public AvailableCommand getValue() {
+        return value;
     }
 
 }

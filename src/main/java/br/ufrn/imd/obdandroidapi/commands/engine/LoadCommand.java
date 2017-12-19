@@ -14,7 +14,7 @@ package br.ufrn.imd.obdandroidapi.commands.engine;
 
 
 import br.ufrn.imd.obdandroidapi.commands.PercentageObdCommand;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Calculated Engine Load value.
@@ -25,7 +25,7 @@ public class LoadCommand extends PercentageObdCommand {
      * <p>Constructor for LoadCommand.</p>
      */
     public LoadCommand() {
-        super("01 04");
+        super(AvailableCommand.ENGINE_LOAD);
     }
 
     /**
@@ -35,14 +35,6 @@ public class LoadCommand extends PercentageObdCommand {
      */
     public LoadCommand(LoadCommand other) {
         super(other);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.ENGINE_LOAD.getValue();
     }
 
 }

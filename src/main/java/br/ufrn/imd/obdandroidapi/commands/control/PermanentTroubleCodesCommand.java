@@ -15,7 +15,7 @@ package br.ufrn.imd.obdandroidapi.commands.control;
 
 import java.util.regex.Pattern;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * It is not needed no know how many DTC are stored.
@@ -32,7 +32,7 @@ public class PermanentTroubleCodesCommand extends GenericTroubleCodeCommand {
      * <p>Constructor for PermanentTroubleCodesCommand.</p>
      */
     public PermanentTroubleCodesCommand() {
-        super("0A");
+        super(AvailableCommand.PERMANENT_TROUBLE_CODES);
     }
 
     /**
@@ -49,11 +49,4 @@ public class PermanentTroubleCodesCommand extends GenericTroubleCodeCommand {
         return CARRIAGE_NUMBER_PATTERN.matcher(str).replaceAll("");
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.PERMANENT_TROUBLE_CODES.getValue();
-    }
 }

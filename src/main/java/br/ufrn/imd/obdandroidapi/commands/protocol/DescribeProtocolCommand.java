@@ -12,7 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Describe the current Protocol.
@@ -30,7 +30,7 @@ public class DescribeProtocolCommand extends ObdProtocolCommand {
      * <p>Constructor for DescribeProtocolCommand.</p>
      */
     public DescribeProtocolCommand() {
-        super("AT DP");
+        super(AvailableCommand.DESCRIBE_PROTOCOL);
     }
 
     /**
@@ -39,14 +39,6 @@ public class DescribeProtocolCommand extends ObdProtocolCommand {
     @Override
     public String getFormattedResult() {
         return getResult();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.DESCRIBE_PROTOCOL.getValue();
     }
 
 }

@@ -17,6 +17,7 @@ import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.commands.SystemOfUnits;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Abstract temperature command.
@@ -30,7 +31,7 @@ public abstract class TemperatureCommand extends ObdCommand implements SystemOfU
      *
      * @param cmd a {@link java.lang.String} object.
      */
-    public TemperatureCommand(String cmd) {
+    public TemperatureCommand(AvailableCommand cmd) {
         super(cmd);
     }
 
@@ -108,12 +109,5 @@ public abstract class TemperatureCommand extends ObdCommand implements SystemOfU
     public float getKelvin() {
         return temperature + 273.15f;
     }
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return the OBD command name.
-     */
-    public abstract String getName();
 
 }

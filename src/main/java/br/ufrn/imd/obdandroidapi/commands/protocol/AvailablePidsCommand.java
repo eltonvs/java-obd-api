@@ -13,6 +13,7 @@
 package br.ufrn.imd.obdandroidapi.commands.protocol;
 
 import br.ufrn.imd.obdandroidapi.commands.PersistentCommand;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Retrieve available PIDs ranging from 21 to 40.
@@ -24,7 +25,7 @@ public abstract class AvailablePidsCommand extends PersistentCommand {
      *
      * @param command a {@link java.lang.String} object.
      */
-    public AvailablePidsCommand(String command) {
+    public AvailablePidsCommand(AvailableCommand command) {
         super(command);
     }
 

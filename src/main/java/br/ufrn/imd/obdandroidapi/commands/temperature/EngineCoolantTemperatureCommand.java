@@ -12,7 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.commands.temperature;
 
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Engine Coolant Temperature.
@@ -23,7 +23,7 @@ public class EngineCoolantTemperatureCommand extends TemperatureCommand {
      * <p>Constructor for EngineCoolantTemperatureCommand.</p>
      */
     public EngineCoolantTemperatureCommand() {
-        super("01 05");
+        super(AvailableCommand.ENGINE_COOLANT_TEMP);
     }
 
     /**
@@ -33,14 +33,6 @@ public class EngineCoolantTemperatureCommand extends TemperatureCommand {
      */
     public EngineCoolantTemperatureCommand(TemperatureCommand other) {
         super(other);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.ENGINE_COOLANT_TEMP.getValue();
     }
 
 }

@@ -16,19 +16,20 @@ import java.util.Locale;
 
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.commands.SystemOfUnits;
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
+import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Distance traveled since Malfunction Indicator Light (MIL) was on.
  */
 public class DistanceMILOnCommand extends ObdCommand implements SystemOfUnits {
+
     private int km = 0;
 
     /**
      * Default constructor.
      */
     public DistanceMILOnCommand() {
-        super("01 21");
+        super(AvailableCommand.DISTANCE_TRAVELED_MIL_ON);
     }
 
     /**
@@ -93,11 +94,4 @@ public class DistanceMILOnCommand extends ObdCommand implements SystemOfUnits {
         return km;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getName() {
-        return AvailableCommandNames.DISTANCE_TRAVELED_MIL_ON.getValue();
-    }
 }
