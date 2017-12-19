@@ -16,13 +16,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Container for multiple {@link ObdCommand} instances.
  */
-public abstract class ObdCommandGroup implements IObdCommand {
-    private List<ObdCommand> commands;
+public class ObdCommandGroup implements IObdCommand {
+    private final List<ObdCommand> commands;
 
     /**
      * Default constructor.
@@ -57,10 +59,21 @@ public abstract class ObdCommandGroup implements IObdCommand {
      * @throws java.io.IOException            if any.
      * @throws java.lang.InterruptedException if any.
      */
-    public void sendCommands(InputStream in, OutputStream out) throws IOException, InterruptedException {
+    @Override
+    public void run(InputStream in, OutputStream out) throws IOException, InterruptedException {
         for (ObdCommand command : commands) {
             command.run(in, out);
         }
+    }
+
+    @Override
+    public String getResult() {
+        StringBuilder res = new StringBuilder();
+        for (ObdCommand command : commands) {
+            res.append(command.getResult()).append(",");
+        }
+
+        return res.toString();
     }
 
     /**
@@ -68,6 +81,7 @@ public abstract class ObdCommandGroup implements IObdCommand {
      *
      * @return a {@link java.lang.String} object.
      */
+    @Override
     public String getFormattedResult() {
         StringBuilder res = new StringBuilder();
         for (ObdCommand command : commands) {
@@ -75,5 +89,56 @@ public abstract class ObdCommandGroup implements IObdCommand {
         }
 
         return res.toString();
+    }
+
+    @Override
+    public String getResultUnit() {
+        StringBuilder res = new StringBuilder();
+        for (ObdCommand command : commands) {
+            res.append(command.getResultUnit()).append(",");
+        }
+
+        return res.toString();
+    }
+
+    @Override
+    public String getName() {
+        StringBuilder res = new StringBuilder();
+        for (ObdCommand command : commands) {
+            res.append(command.getName()).append(",");
+        }
+
+        return res.toString();
+    }
+
+    @Override
+    public String getCommandPID() {
+        StringBuilder res = new StringBuilder();
+        for (ObdCommand command : commands) {
+            res.append(command.getCommandPID()).append(",");
+        }
+
+        return res.toString();
+    }
+
+    @Override
+    public Map<String, String> getMap() {
+        Map<String, String> retMap = new HashMap<>();
+        for (ObdCommand command : commands) {
+            Map<String, String> cmdMap = command.getMap();
+            for (Map.Entry<String, String> entry : cmdMap.entrySet()) {
+                retMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return retMap;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (ObdCommand command : commands) {
+            sb.append(command.toString());
+        }
+        return sb.toString();
     }
 }

@@ -12,8 +12,28 @@
  */
 package br.ufrn.imd.obdandroidapi.commands;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Map;
+
 /**
  * Interface with OBD Command behaviours
  */
 public interface IObdCommand {
+    void run(InputStream in, OutputStream out) throws IOException, InterruptedException;
+
+    Object getResult();
+
+    Object getFormattedResult();
+
+    Object getResultUnit();
+
+    Object getName();
+
+    Object getCommandPID();
+
+    Map<String, String> getMap();
+
+    String toString();
 }

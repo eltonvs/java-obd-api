@@ -17,7 +17,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.ufrn.imd.obdandroidapi.exceptions.BusInitException;
 import br.ufrn.imd.obdandroidapi.exceptions.MisunderstoodCommandException;
@@ -63,16 +65,6 @@ public abstract class ObdCommand implements IObdCommand {
     private long end;
 
     /**
-     * Default constructor to use
-     *
-     * @param command the command to send
-     */
-    public ObdCommand(String command) {
-        this.cmd = command;
-        this.buffer = new ArrayList<>();
-    }
-
-    /**
      * Prevent empty instantiation
      */
     private ObdCommand() {
@@ -85,6 +77,16 @@ public abstract class ObdCommand implements IObdCommand {
      */
     public ObdCommand(ObdCommand other) {
         this(other.cmd);
+    }
+
+    /**
+     * Default constructor to use
+     *
+     * @param command the command to send
+     */
+    public ObdCommand(String command) {
+        this.cmd = command;
+        this.buffer = new ArrayList<>();
     }
 
     /**
@@ -127,21 +129,6 @@ public abstract class ObdCommand implements IObdCommand {
     }
 
     /**
-     * Resend this command.
-     *
-     * @param out a {@link java.io.OutputStream} object.
-     * @throws java.io.IOException            if any.
-     * @throws java.lang.InterruptedException if any.
-     */
-    protected void resendCommand(OutputStream out) throws IOException, InterruptedException {
-        out.write("\r".getBytes());
-        out.flush();
-        if (responseDelayInMs != null && responseDelayInMs > 0) {
-            Thread.sleep(responseDelayInMs);
-        }
-    }
-
-    /**
      * Reads the OBD-II response.
      * <p>
      * This method may be overridden in subclasses, such as ObdMultiCommand.
@@ -154,49 +141,6 @@ public abstract class ObdCommand implements IObdCommand {
         checkForErrors();
         fillBuffer();
         performCalculations();
-    }
-
-    /**
-     * This method exists so that for each command, there must be a method that is
-     * called only once to perform calculations.
-     */
-    protected abstract void performCalculations();
-
-    /**
-     * <p>fillBuffer.</p>
-     */
-    protected void fillBuffer() {
-        /*
-         * Imagine the following response 41 0c 00 0d.
-         *
-         * ELM sends strings!! So, ELM puts spaces between each "byte". And pay
-         * attention to the fact that I've put the word byte in quotes, because 41
-         * is actually TWO bytes (two chars) in the socket. So, we must do some more
-         * processing..
-         */
-        rawData = removeAll(WHITESPACE_PATTERN, rawData); // removes all [ \t\n\x0B\f\r]
-
-        /*
-         * Data may have echo or informative text like "INIT BUS..." or similar.
-         * The response ends with two carriage return characters. So we need to take
-         * everything from the last carriage return before those two (trimmed above).
-         */
-        rawData = removeAll(BUS_INIT_PATTERN, rawData);
-        rawData = removeAll(COLON_PATTERN, rawData);
-
-        if (!DIGITS_LETTERS_PATTERN.matcher(rawData).matches()) {
-            throw new NonNumericResponseException(rawData);
-        }
-
-        // read string each two chars
-        buffer.clear();
-        int initialChar = 0;
-        int finalChar = 2;
-        while (finalChar <= rawData.length()) {
-            buffer.add(Integer.decode("0x" + rawData.substring(initialChar, finalChar)));
-            initialChar = finalChar;
-            finalChar += 2;
-        }
     }
 
     /**
@@ -238,6 +182,49 @@ public abstract class ObdCommand implements IObdCommand {
     }
 
     /**
+     * <p>fillBuffer.</p>
+     */
+    protected void fillBuffer() {
+        /*
+         * Imagine the following response 41 0c 00 0d.
+         *
+         * ELM sends strings!! So, ELM puts spaces between each "byte". And pay
+         * attention to the fact that I've put the word byte in quotes, because 41
+         * is actually TWO bytes (two chars) in the socket. So, we must do some more
+         * processing..
+         */
+        rawData = removeAll(WHITESPACE_PATTERN, rawData); // removes all [ \t\n\x0B\f\r]
+
+        /*
+         * Data may have echo or informative text like "INIT BUS..." or similar.
+         * The response ends with two carriage return characters. So we need to take
+         * everything from the last carriage return before those two (trimmed above).
+         */
+        rawData = removeAll(BUS_INIT_PATTERN, rawData);
+        rawData = removeAll(COLON_PATTERN, rawData);
+
+        if (!DIGITS_LETTERS_PATTERN.matcher(rawData).matches()) {
+            throw new NonNumericResponseException(rawData);
+        }
+
+        // read string each two chars
+        buffer.clear();
+        int initialChar = 0;
+        int finalChar = 2;
+        while (finalChar <= rawData.length()) {
+            buffer.add(Integer.decode("0x" + rawData.substring(initialChar, finalChar)));
+            initialChar = finalChar;
+            finalChar += 2;
+        }
+    }
+
+    /**
+     * This method exists so that for each command, there must be a method that is
+     * called only once to perform calculations.
+     */
+    protected abstract void performCalculations();
+
+    /**
      * <p>getResult.</p>
      *
      * @return the raw command response in string representation.
@@ -252,6 +239,58 @@ public abstract class ObdCommand implements IObdCommand {
      * @return a formatted command response in string representation.
      */
     public abstract String getFormattedResult();
+
+    /**
+     * The unit of the result, as used in {@link #getFormattedResult()}
+     *
+     * @return a String representing a unit or "", never null
+     */
+    public String getResultUnit() {
+        return "";  // no unit by default
+    }
+
+    /**
+     * <p>getName.</p>
+     *
+     * @return the OBD command name.
+     */
+    public abstract String getName();
+
+    /**
+     * <p>getCommandPID.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public final String getCommandPID() {
+        return cmd.substring(3);
+    }
+
+    /**
+     * <p>getMap.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
+    @Override
+    public Map<String, String> getMap() {
+        Map<String, String> retMap = new HashMap<>();
+        retMap.put(getName(), getFormattedResult());
+        return retMap;
+    }
+
+    /**
+     * Resend this command.
+     *
+     * @param out a {@link java.io.OutputStream} object.
+     * @throws java.io.IOException            if any.
+     * @throws java.lang.InterruptedException if any.
+     */
+    protected void resendCommand(OutputStream out) throws IOException, InterruptedException {
+        out.write("\r".getBytes());
+        out.flush();
+        if (responseDelayInMs != null && responseDelayInMs > 0) {
+            Thread.sleep(responseDelayInMs);
+        }
+    }
 
     /**
      * <p>getCalculatedResult.</p>
@@ -279,15 +318,6 @@ public abstract class ObdCommand implements IObdCommand {
     }
 
     /**
-     * The unit of the result, as used in {@link #getFormattedResult()}
-     *
-     * @return a String representing a unit or "", never null
-     */
-    public String getResultUnit() {
-        return "";  // no unit by default
-    }
-
-    /**
      * Set to 'true' if you want to use imperial units, false otherwise. By
      * default this value is set to 'false'.
      *
@@ -296,13 +326,6 @@ public abstract class ObdCommand implements IObdCommand {
     public void setImperialUnits(boolean isImperial) {
         this.imperialUnits = isImperial;
     }
-
-    /**
-     * <p>getName.</p>
-     *
-     * @return the OBD command name.
-     */
-    public abstract String getName();
 
     /**
      * Time the command waits before returning from #sendCommand()
@@ -321,7 +344,6 @@ public abstract class ObdCommand implements IObdCommand {
     public void setResponseTimeDelay(Long responseDelayInMs) {
         this.responseDelayInMs = responseDelayInMs;
     }
-
 
     /**
      * <p>Getter for the field <code>start</code>.</p>
@@ -360,22 +382,17 @@ public abstract class ObdCommand implements IObdCommand {
     }
 
     /**
-     * <p>getCommandPID.</p>
-     *
-     * @return a {@link java.lang.String} object.
-     * @since 1.0-RC12
-     */
-    public final String getCommandPID() {
-        return cmd.substring(3);
-    }
-
-    /**
      * <p>getCommandMode.</p>
      *
      * @return a {@link java.lang.String} object.
      */
     public final String getCommandMode() {
         return cmd.length() >= 2 ? cmd.substring(0, 2) : cmd;
+    }
+
+    @Override
+    public int hashCode() {
+        return cmd != null ? cmd.hashCode() : 0;
     }
 
     @Override
@@ -390,10 +407,5 @@ public abstract class ObdCommand implements IObdCommand {
         ObdCommand that = (ObdCommand) o;
 
         return cmd != null ? cmd.equals(that.cmd) : that.cmd == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return cmd != null ? cmd.hashCode() : 0;
     }
 }
