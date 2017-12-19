@@ -13,8 +13,6 @@
 package br.ufrn.imd.obdandroidapi.commands.control;
 
 
-import java.util.Locale;
-
 import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
@@ -55,10 +53,7 @@ public class TimeSinceMILOnCommand extends ObdCommand {
      */
     @Override
     public String getFormattedResult() {
-        // determine time
-        final String hh = String.format(Locale.getDefault(), "%02d", value / 60);
-        final String mm = String.format(Locale.getDefault(), "%02d", value % 60);
-        return String.format("%s:%s:00", hh, mm);
+        return getCalculatedResult() + getResultUnit();
     }
 
     /**
