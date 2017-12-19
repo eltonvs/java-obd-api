@@ -151,9 +151,9 @@ public abstract class GenericTroubleCodeCommand extends ObdCommand {
     public String getCalculatedResult() {
         StringBuilder sb = new StringBuilder();
         for (String code : troubleCodes) {
-            sb.append(code).append("\n");
+            sb.append(code).append(" ");
         }
-        return sb.toString();
+        return "[ " + sb.toString() + "]";
     }
 
     private String removeCarriage(String str) {
