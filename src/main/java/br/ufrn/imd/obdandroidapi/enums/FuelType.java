@@ -12,8 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.enums;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseArray;
 
 /**
  * MODE 1 PID 0x51 will return one of the following values to identify the fuel
@@ -46,11 +45,11 @@ public enum FuelType {
     /**
      * Constant <code>map</code>
      */
-    private static final Map<Integer, FuelType> map = new HashMap<>();
+    private static final SparseArray<FuelType> arr = new SparseArray<>();
 
     static {
         for (FuelType error : FuelType.values()) {
-            map.put(error.getValue(), error);
+            arr.append(error.getValue(), error);
         }
     }
 
@@ -69,7 +68,7 @@ public enum FuelType {
      * @return a {@link FuelType} object.
      */
     public static FuelType fromValue(final int value) {
-        return map.get(value);
+        return arr.get(value);
     }
 
     /**

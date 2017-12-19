@@ -12,8 +12,7 @@
  */
 package br.ufrn.imd.obdandroidapi.enums;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseArray;
 
 /**
  * Select one of the Fuel Trim percentage banks to access.
@@ -28,11 +27,11 @@ public enum FuelTrim {
     /**
      * Constant <code>map</code>
      */
-    private static final Map<Integer, FuelTrim> map = new HashMap<>();
+    private static final SparseArray<FuelTrim> arr = new SparseArray<>();
 
     static {
         for (FuelTrim error : FuelTrim.values()) {
-            map.put(error.getValue(), error);
+            arr.append(error.getValue(), error);
         }
     }
 
@@ -51,7 +50,7 @@ public enum FuelTrim {
      * @return a {@link FuelTrim} object.
      */
     public static FuelTrim fromValue(final int value) {
-        return map.get(value);
+        return arr.get(value);
     }
 
     /**
