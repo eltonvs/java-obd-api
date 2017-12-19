@@ -10,10 +10,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.ufrn.imd.obdandroidapi.commands;
+package br.ufrn.imd.obdandroidapi.commands.engine;
 
 import java.util.Locale;
 
+import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
+import br.ufrn.imd.obdandroidapi.commands.SystemOfUnits;
 import br.ufrn.imd.obdandroidapi.enums.AvailableCommandNames;
 
 /**
