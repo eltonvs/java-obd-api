@@ -33,6 +33,7 @@ public enum AvailableCommand {
     PERMANENT_TROUBLE_CODES("Permanent Trouble Codes", "0A"),
     RESET_TROUBLE_CODES("Reset Trouble Codes", "04"),
     FUEL_LEVEL("Fuel Level", "01 2F"),
+    ETHANOL_LEVEL("Ethanol Level", "01 52"),
     FUEL_TYPE("Fuel Type", "01 51"),
     FUEL_CONSUMPTION_RATE("Fuel Consumption Rate", "01 5E"),
     TIMING_ADVANCE("Timing Advance", "01 0E"),
