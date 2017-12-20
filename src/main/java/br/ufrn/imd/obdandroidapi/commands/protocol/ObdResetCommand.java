@@ -23,7 +23,12 @@ public class ObdResetCommand extends ObdProtocolCommand {
      * <p>Constructor for ObdResetCommand.</p>
      */
     public ObdResetCommand() {
+        this(0L);
+    }
+
+    public ObdResetCommand(Long delay) {
         super(AvailableCommand.RESET_OBD);
+        setResponseTimeDelay(delay);
     }
 
     /**
