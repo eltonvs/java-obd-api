@@ -13,13 +13,15 @@
 package br.ufrn.imd.obdandroidapi.commands.control;
 
 
-import br.ufrn.imd.obdandroidapi.commands.PercentageObdCommand;
+import br.ufrn.imd.obdandroidapi.commands.ObdCommand;
 import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
 
 /**
  * Timing Advance
  */
-public class TimingAdvanceCommand extends PercentageObdCommand {
+public class TimingAdvanceCommand extends ObdCommand {
+
+    private double timingAdvance = -65f;
 
     /**
      * <p>Constructor for TimingAdvanceCommand.</p>
@@ -35,6 +37,26 @@ public class TimingAdvanceCommand extends PercentageObdCommand {
      */
     public TimingAdvanceCommand(TimingAdvanceCommand other) {
         super(other);
+    }
+
+    @Override
+    protected void performCalculations() {
+        timingAdvance = buffer.get(2) / 2f - 64;
+    }
+
+    @Override
+    public String getFormattedResult() {
+        return getCalculatedResult() + getResultUnit();
+    }
+
+    @Override
+    public String getCalculatedResult() {
+        return String.valueOf(timingAdvance);
+    }
+
+    @Override
+    public String getResultUnit() {
+        return "°";
     }
 
 }
