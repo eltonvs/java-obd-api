@@ -10,29 +10,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.ufrn.imd.obdandroidapi.commands.protocol;
-
-import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
+package br.ufrn.imd.obdandroidapi.enums;
 
 /**
- * Retrieve available PIDs ranging from 21 to 40.
+ * Select one of the Fuel Trim percentage banks to access.
  */
-public class AvailablePidsCommand21to40 extends AvailablePidsCommand {
+public enum PidRange {
 
-    /**
-     * Default constructor.
-     */
-    public AvailablePidsCommand21to40() {
-        super(AvailableCommand.PIDS_21_40);
+    PIDS_01_20(AvailableCommand.PIDS_01_20),
+    PIDS_21_40(AvailableCommand.PIDS_21_40),
+    PIDS_41_60(AvailableCommand.PIDS_41_60);
+
+    private final AvailableCommand value;
+
+    PidRange(final AvailableCommand value) {
+        this.value = value;
     }
 
     /**
-     * Copy constructor.
+     * <p>Getter for the field <code>value</code>.</p>
      *
-     * @param other a {@link AvailablePidsCommand} object.
+     * @return a int.
      */
-    public AvailablePidsCommand21to40(AvailablePidsCommand21to40 other) {
-        super(other);
+    public AvailableCommand getValue() {
+        return value;
     }
 
 }
