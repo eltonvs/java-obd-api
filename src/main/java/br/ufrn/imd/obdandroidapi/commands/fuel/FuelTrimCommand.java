@@ -40,20 +40,12 @@ public class FuelTrimCommand extends PercentageObdCommand {
     }
 
     /**
-     * @param value Raw value to be decoded
-     * @return Decoded Fuel Trim value
-     */
-    private float prepareTempValue(final int value) {
-        return (value - 128) * (100.0F / 128);
-    }
-
-    /**
      * <p>performCalculations.</p>
      */
     @Override
     protected void performCalculations() {
         // ignore first two bytes [hh hh] of the response
-        percentage = prepareTempValue(buffer.get(2));
+        percentage = (100f / 128) * buffer.get(2) - 100;
     }
 
     /**

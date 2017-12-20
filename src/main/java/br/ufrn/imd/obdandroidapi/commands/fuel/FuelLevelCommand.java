@@ -29,15 +29,6 @@ public class FuelLevelCommand extends PercentageObdCommand {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void performCalculations() {
-        // ignore first two bytes [hh hh] of the response
-        percentage = 100.0f * buffer.get(2) / 255.0f;
-    }
-
-    /**
      * <p>getFuelLevel.</p>
      *
      * @return a float.
