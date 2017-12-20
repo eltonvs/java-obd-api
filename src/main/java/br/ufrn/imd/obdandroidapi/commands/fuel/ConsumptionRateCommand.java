@@ -22,7 +22,7 @@ import br.ufrn.imd.obdandroidapi.enums.AvailableCommand;
  */
 public class ConsumptionRateCommand extends ObdCommand {
 
-    private float fuelRate = -1.0f;
+    private float fuelRate = -1f;
 
     /**
      * <p>Constructor for ConsumptionRateCommand.</p>

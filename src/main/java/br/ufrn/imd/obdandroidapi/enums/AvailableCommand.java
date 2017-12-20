@@ -40,7 +40,6 @@ public enum AvailableCommand {
     EQUIV_RATIO("Command Equivalence Ratio", "01 44"),
     DISTANCE_TRAVELED_AFTER_CODES_CLEARED("Distance since codes cleared", "01 31"),
     CONTROL_MODULE_VOLTAGE("Control Module Power Supply", "01 42"),
-    ENGINE_FUEL_RATE("Engine Fuel Rate", "01 5E"),
     FUEL_RAIL_PRESSURE("Fuel Rail Pressure", "01 23"),
     VIN("Vehicle Identification Number (VIN)", "09 02"),
     DISTANCE_TRAVELED_MIL_ON("Distance traveled with MIL on", "01 21"),
