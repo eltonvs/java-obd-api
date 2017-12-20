@@ -84,7 +84,7 @@ public abstract class GenericTroubleCodeCommand extends ObdCommand {
             workingData = removeCarriageNumber(result);
         }
 
-        for (int begin = startIndex; begin < workingData.length(); begin += 4) {
+        for (int begin = startIndex; begin + 4 <= workingData.length(); begin += 4) {
             StringBuilder dtc = new StringBuilder();
             byte b1 = hexStringToByteArray(workingData.charAt(begin));
             int ch1 = ((b1 & 0xC0) >> 6);
