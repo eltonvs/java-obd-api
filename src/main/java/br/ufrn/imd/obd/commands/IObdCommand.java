@@ -35,5 +35,7 @@ public interface IObdCommand {
 
     Map<String, String> getMap();
 
+    long getElapsedTime();
+
     String toString();
 }

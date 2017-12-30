@@ -386,6 +386,16 @@ public abstract class ObdCommand implements IObdCommand {
     }
 
     /**
+     * <p>Getter the elapsed time.</p>
+     *
+     * @return a long.
+     */
+    @Override
+    public long getElapsedTime() {
+        return end - start;
+    }
+
+    /**
      * <p>getCommandMode.</p>
      *
      * @return a {@link java.lang.String} object.

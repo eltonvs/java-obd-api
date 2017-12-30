@@ -134,6 +134,15 @@ public class ObdCommandGroup implements IObdCommand {
     }
 
     @Override
+    public long getElapsedTime() {
+        long elapsedTime = 0L;
+        for (ObdCommand command : commands) {
+            elapsedTime += command.getElapsedTime();
+        }
+        return elapsedTime;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (ObdCommand command : commands) {
