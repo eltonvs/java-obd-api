@@ -277,7 +277,9 @@ public abstract class ObdCommand implements IObdCommand {
     @Override
     public Map<String, String> getMap() {
         Map<String, String> retMap = new HashMap<>();
-        retMap.put(getName(), getFormattedResult());
+        if (cmd != null) {
+            retMap.put(cmd.name(), getCalculatedResult());
+        }
         return retMap;
     }
 
