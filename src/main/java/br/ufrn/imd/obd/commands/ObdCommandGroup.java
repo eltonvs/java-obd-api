@@ -17,8 +17,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import br.ufrn.imd.obd.exceptions.NoDataException;
 
 /**
  * Container for multiple {@link ObdCommand} instances.
@@ -61,8 +64,13 @@ public class ObdCommandGroup implements IObdCommand {
      */
     @Override
     public void run(InputStream in, OutputStream out) throws IOException, InterruptedException {
-        for (ObdCommand command : commands) {
-            command.run(in, out);
+        for (Iterator<ObdCommand> it = commands.iterator(); it.hasNext();) {
+            ObdCommand command = it.next();
+            try {
+                command.run(in, out);
+            } catch (NoDataException e) {
+                it.remove();
+            }
         }
     }
 
