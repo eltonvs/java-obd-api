@@ -422,7 +422,7 @@ public abstract class ObdCommand implements IObdCommand {
 
         ObdCommand that = (ObdCommand) o;
 
-        return cmd != null ? cmd.equals(that.cmd) : that.cmd == null;
+        return cmd == that.cmd || cmd != null && that.cmd != null && cmd.toString().equals(that.cmd.toString());
     }
 
     @Override
