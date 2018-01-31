@@ -150,10 +150,14 @@ public abstract class GenericTroubleCodeCommand extends ObdCommand {
     @Override
     public String getCalculatedResult() {
         StringBuilder sb = new StringBuilder();
+        int count = 1;
         for (String code : troubleCodes) {
-            sb.append(code).append(" ");
+            sb.append(code);
+            if (count++ < troubleCodes.size()) {
+                sb.append(",");
+            }
         }
-        return "[ " + sb.toString() + "]";
+        return sb.toString();
     }
 
     private String removeCarriage(String str) {
