@@ -408,7 +408,7 @@ public abstract class ObdCommand implements IObdCommand {
 
     @Override
     public int hashCode() {
-        return cmd.getCommand() != null ? cmd.getCommand().hashCode() : 0;
+        return cmd != null && cmd.getCommand() != null ? cmd.getCommand().hashCode() : 0;
     }
 
     @Override
