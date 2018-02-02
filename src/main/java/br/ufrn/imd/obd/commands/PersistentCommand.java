@@ -56,23 +56,12 @@ public abstract class PersistentCommand extends ObdCommand {
     }
 
     /**
-     * <p>knows.</p>
-     *
-     * @param cmd a {@link java.lang.Class} object.
-     * @return a boolean.
-     */
-    public static boolean knows(Class cmd) {
-        String key = cmd.getSimpleName();
-        return knownValues.containsKey(key);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
     protected void readResult(InputStream in) throws IOException {
         super.readResult(in);
-        String key = getClass().getSimpleName();
+        String key = getKey();
         knownValues.put(key, rawData);
         knownBuffers.put(key, new ArrayList<>(buffer));
     }
@@ -82,7 +71,7 @@ public abstract class PersistentCommand extends ObdCommand {
      */
     @Override
     public void run(InputStream in, OutputStream out) throws IOException, InterruptedException {
-        String key = getClass().getSimpleName();
+        String key = getKey();
         if (knownValues.containsKey(key)) {
             rawData = knownValues.get(key);
             buffer = knownBuffers.get(key);
@@ -90,5 +79,9 @@ public abstract class PersistentCommand extends ObdCommand {
         } else {
             super.run(in, out);
         }
+    }
+
+    private String getKey() {
+        return getClass().getSimpleName() + (cmd != null ? cmd.getCommand() : "");
     }
 }
