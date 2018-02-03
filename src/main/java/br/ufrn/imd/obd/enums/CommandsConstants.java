@@ -31,7 +31,8 @@ import br.ufrn.imd.obd.commands.pressure.BarometricPressureCommand;
 import br.ufrn.imd.obd.commands.pressure.FuelPressureCommand;
 import br.ufrn.imd.obd.commands.pressure.FuelRailPressureCommand;
 import br.ufrn.imd.obd.commands.pressure.IntakeManifoldPressureCommand;
-import br.ufrn.imd.obd.commands.protocol.AvailablePidsCommand;
+import br.ufrn.imd.obd.commands.protocol.AvailablePidsCommand21to40;
+import br.ufrn.imd.obd.commands.protocol.AvailablePidsCommand41to60;
 import br.ufrn.imd.obd.commands.temperature.AirIntakeTemperatureCommand;
 import br.ufrn.imd.obd.commands.temperature.AmbientAirTemperatureCommand;
 import br.ufrn.imd.obd.commands.temperature.EngineCoolantTemperatureCommand;
@@ -61,7 +62,7 @@ public class CommandsConstants {
         SUPPORTED_COMMANDS.put(0x10, MassAirFlowCommand.class);
         SUPPORTED_COMMANDS.put(0x11, ThrottlePositionCommand.class);
         SUPPORTED_COMMANDS.put(0x1F, RuntimeCommand.class);
-        SUPPORTED_COMMANDS.put(0x20, AvailablePidsCommand.class);
+        SUPPORTED_COMMANDS.put(0x20, AvailablePidsCommand21to40.class);
 
         // 21 to 40
         SUPPORTED_COMMANDS.put(0x21, DistanceMILOnCommand.class);
@@ -70,7 +71,7 @@ public class CommandsConstants {
         SUPPORTED_COMMANDS.put(0x31, DistanceSinceCCCommand.class);
         SUPPORTED_COMMANDS.put(0x33, BarometricPressureCommand.class);
         SUPPORTED_COMMANDS.put(0x34, WidebandAirFuelRatioCommand.class);
-        SUPPORTED_COMMANDS.put(0x40, AvailablePidsCommand.class);
+        SUPPORTED_COMMANDS.put(0x40, AvailablePidsCommand41to60.class);
 
         // 41 to 60
         SUPPORTED_COMMANDS.put(0x42, ModuleVoltageCommand.class);

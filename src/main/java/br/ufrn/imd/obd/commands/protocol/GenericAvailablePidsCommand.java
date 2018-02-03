@@ -20,31 +20,33 @@ import br.ufrn.imd.obd.commands.ObdCommand;
 import br.ufrn.imd.obd.commands.PersistentCommand;
 import br.ufrn.imd.obd.enums.AvailableCommand;
 import br.ufrn.imd.obd.enums.CommandsConstants;
-import br.ufrn.imd.obd.enums.PidRange;
 
 /**
  * Retrieve available PIDs ranging from 21 to 40.
  */
-public class AvailablePidsCommand extends PersistentCommand {
+public abstract class GenericAvailablePidsCommand extends PersistentCommand {
 
     private List<Class<? extends ObdCommand>> supportedCommands = new ArrayList<>();
+    private int padding = 0;
 
     /**
      * Default constructor.
      *
-     * @param command a {@link java.lang.String} object.
+     * @param command a {@link String} object.
      */
-    public AvailablePidsCommand(final PidRange range) {
-        super(range.getValue());
+    public GenericAvailablePidsCommand(AvailableCommand command, int pad) {
+        super(command);
+        padding = pad;
     }
 
     /**
      * Copy constructor.
      *
-     * @param other a {@link AvailablePidsCommand} object.
+     * @param other a {@link GenericAvailablePidsCommand} object.
      */
-    public AvailablePidsCommand(AvailablePidsCommand other) {
+    public GenericAvailablePidsCommand(GenericAvailablePidsCommand other) {
         super(other);
+        padding = other.padding;
     }
 
     /**
@@ -54,14 +56,6 @@ public class AvailablePidsCommand extends PersistentCommand {
     protected void performCalculations() {
         supportedCommands.clear();
         String bits = getBinaryStringHex(getCalculatedResult());
-        int padding = 0;
-        if (cmd != null) {
-            if (cmd == AvailableCommand.PIDS_21_40) {
-                padding = 0x20;
-            } else if (cmd == AvailableCommand.PIDS_41_60) {
-                padding = 0x40;
-            }
-        }
         fillAvailableCommands(bits, padding);
     }
 
@@ -86,6 +80,11 @@ public class AvailablePidsCommand extends PersistentCommand {
         return String.valueOf(rawData).substring(4);
     }
 
+    private String getBinaryStringHex(String hexString) {
+        Long result = Long.parseLong(hexString, 16);
+        return Long.toBinaryString(result);
+    }
+
     private void fillAvailableCommands(String bits, int pad) {
         bits = fillBits(bits);
 
@@ -95,11 +94,6 @@ public class AvailablePidsCommand extends PersistentCommand {
                 supportedCommands.add(CommandsConstants.SUPPORTED_COMMANDS.get(pid));
             }
         }
-    }
-
-    private String getBinaryStringHex(String hexString) {
-        Long result = Long.parseLong(hexString, 16);
-        return Long.toBinaryString(result);
     }
 
     private String fillBits(String str) {
