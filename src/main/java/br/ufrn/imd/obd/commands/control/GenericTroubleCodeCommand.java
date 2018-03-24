@@ -157,7 +157,7 @@ public abstract class GenericTroubleCodeCommand extends ObdCommand {
                 sb.append(",");
             }
         }
-        return sb.toString();
+        return "[" + sb.toString() + "]";
     }
 
     private String removeCarriage(String str) {
