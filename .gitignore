@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/java,android,androidstudio
+# Created by https://www.gitignore.io/api/java,gradle,android,androidstudio
 
 ### Android ###
 # Built application files
@@ -99,7 +99,9 @@ obj/
 /out/
 
 # User-specific configurations
+.idea/caches/
 .idea/libraries/
+.idea/shelf/
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
@@ -127,6 +129,8 @@ Thumbs.db
 # Legacy Eclipse project files
 .classpath
 .project
+.cproject
+.settings/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -177,4 +181,20 @@ fabric.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
-# End of https://www.gitignore.io/api/java,android,androidstudio
+### Gradle ###
+**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+
+# End of https://www.gitignore.io/api/java,gradle,android,androidstudio
