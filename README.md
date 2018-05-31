@@ -1,5 +1,4 @@
 # Java OBD API
-==============
 
 An OBD-II API written in Java. Based on [obd-java-api](https://github.com/pires/obd-java-api).
 
@@ -64,3 +63,4 @@ This project is licensed under the Apache 2.0 - see the [LICENSE](LICENSE) file 
 ## Acknowledgments
 
 * **Paulo Pires** - Creator of the [obd-java-api](https://github.com/pires/obd-java-api), on which this project was based.
+* **[SmartMetropolis Project](http://smartmetropolis.imd.ufrn.br)** (Digital Metropolis Institute - UFRN, Brazil)
