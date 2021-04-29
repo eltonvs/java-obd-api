@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "08:00"
+  open-pull-requests-limit: 99
+  reviewers:
+  - eltonvs
+  ignore:
+  - dependency-name: junit:junit
+    versions:
+    - 4.13.1
